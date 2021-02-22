@@ -2,28 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-depl
-
-# number of pods i want to run for auth service
 spec:
-  # one copy of image for now
   replicas: 1
-  # step one for 2 step process. selector will tell the deployment how to find all the pods that has been create
   selector:
     matchLabels:
       app: auth
-      # how to create each individual pods that this deployment is going to create
-    template:
-      metadata:
-        labels:
-          app: auth
-      # tell the pod how to behave
-      spec:
-        containers:
-          - name: auth
-            image: syedaismatfarjana09/auth
-
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: syedaismatfarjana09/auth
 ---
-# creating service
 apiVersion: v1
 kind: Service
 metadata:
